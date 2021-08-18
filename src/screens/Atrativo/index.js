@@ -5,7 +5,6 @@ import {
     ImageMetade,
     Overlay,
     ButtonArea,
-    InfoArea,
     InfoBottomArea,
     InfoAreaBottomText,
     PhotosArea,
@@ -16,17 +15,27 @@ import {
 } from './styles'
 import { StatusBar } from 'expo-status-bar'
 import { AntDesign, Feather } from '@expo/vector-icons'; 
-import { Text, StyleSheet, Image, ScrollView, View } from 'react-native'
+import { Text, StyleSheet, Image, ScrollView } from 'react-native'
 import { UserContext } from '../../contexts/UserContext';
-
-import vehicle from '../../../assets/Icons/4x4.png'
-import vehicleNormal from '../../../assets/Icons/vehiclenormal.png'
+import { BlurView } from 'expo-blur';
 
 export default ({ route, navigation }) => {
 
     const { dispatch:UserDispatch, state:user } = useContext(UserContext);
 
-    const { id, image, name, type, price, location, images, mapa, description, vehicleRecomended, guia } = route.params;
+    const {
+        id,
+        name,
+        type,
+        price,
+        location,
+        images,
+        mapa,
+        description,
+        vehicleRecomended,
+        guia,
+        polluted
+    } = route.params;
 
     const [ imageSelected, setImageSelected ] = useState(0);
 
@@ -36,7 +45,7 @@ export default ({ route, navigation }) => {
 
     const res = user.favorites.find(item => item.id === id);
 
-    const handleFavorite = () => {
+    const handleFavorite = async () => {
         let data = {id, name, type, price, image: images[0].url}
 
         UserDispatch({
@@ -53,7 +62,11 @@ export default ({ route, navigation }) => {
 
     return (
         <Container>
-            <ImageMetade source={images[imageSelected].url} >
+            <ImageMetade
+                source={images[imageSelected].url}
+                borderBottomLeftRadius={40}
+                borderBottomRightRadius={40}
+            >
                 <StatusBar style="light" />
                 <Overlay>
                     <HeaderArea>    
@@ -61,58 +74,68 @@ export default ({ route, navigation }) => {
                             title="Voltar"
                             onPress={() => navigation.goBack()}
                         >
-                            <AntDesign name="arrowleft" size={24} color="#333" />
+                            <BlurView style={styles.glass}>
+                                <AntDesign name="arrowleft" size={24} color="#fff" />
+                            </BlurView>
                         </ButtonArea>
                         <ButtonArea
                             title="Voltar"
                             onPress={() => WebBrowser.openBrowserAsync(mapa)}
                         >
-                            <Feather name="map-pin" size={24} color="black" />
+                            <BlurView style={styles.glass}>
+                                <Feather name="map-pin" size={24} color="#fff" />
+                            </BlurView>
                         </ButtonArea>
                         <IconArea onPress={handleFavorite}>
-                            {res === undefined &&
-                                <AntDesign name="hearto" size={24} color="#333" />
-                            }
-                            {res &&
-                                <AntDesign name="heart" size={24} color="red" />
-                            }
+                            <BlurView style={styles.glass}>
+                                {res === undefined &&
+                                    <AntDesign name="hearto" size={24} color="#fff" />
+                                }
+                                {res &&
+                                    <AntDesign name="heart" size={24} color="red" />
+                                }
+                            </BlurView>
                         </IconArea>
                     </HeaderArea>
-                    <InfoArea>
-                        <Text style={styles.text}>{type}</Text>
-                        <Text style={styles.textBig}>{name}</Text>
-                    </InfoArea>
                     <InfoBottomArea>
                         <InfoAreaBottomText>
                             <Text style={{ color: '#fff', fontSize: 18 }}>R$ {price},00</Text>
                             <Text style={{ color: '#fff', fontSize: 18 }}>{location}</Text>
                         </InfoAreaBottomText>
-                        <PhotosArea>
-                            {images.map((item, key)=>(
-                                <ImageBox key={key} onPress={()=>handleImageClick(key)}>
-                                    <Image source={item.url} style={styles.imageAtrativo} />
-                                </ImageBox>
-                            ))}
-                        </PhotosArea>
+                        <BlurView style={styles.imageArea}>
+                            <PhotosArea>
+                                {images.map((item, key)=>(
+                                    <ImageBox key={key} onPress={()=>handleImageClick(key)}>
+                                        <Image source={item.url} style={styles.imageAtrativo} />
+                                    </ImageBox>
+                                ))}
+                            </PhotosArea>
+                        </BlurView>
                     </InfoBottomArea>
                 </Overlay>
             </ImageMetade>
 
             <ScrollView showsVerticalScrollIndicator={false}>
                 <AreaInfo>
-                    <Text style={{ fontFamily: 'Poppins_400Regular' }}>{description}</Text>
-                    {vehicleRecomended === '4X4' &&
-                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                            <Image source={vehicle} style={{ width: 50, height: 50 }} />
-                        </View>
+                    <Text style={styles.text}>{type} {name}</Text>
+                    <Text style={{ fontFamily: 'Poppins_400Regular', fontSize: 16 }}>{description}</Text>
+                    <Text style={{ marginTop: 20, fontFamily: 'Poppins_500Medium' }}>
+                        Véiculo recomendado: {vehicleRecomended}
+                    </Text>
+                    <Text style={{ marginTop: 20, fontFamily: 'Poppins_500Medium' }}>
+                        Necessário um Guia: {guia ? 'Sim' : 'Não'}
+                    </Text>
+                    {polluted &&
+                        <Text style={{ marginTop: 10, fontFamily: 'Poppins_500Medium', color: '#00dabe' }}>
+                            Cachoeira Imprópria para banho!
+                        </Text>
                     }
-                    {vehicleRecomended === 'Qualquer Veículo' &&
-                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                            <Image source={vehicleNormal} style={{ width: 50, height: 50 }} />
-                            <Text style={{ marginTop: 10, marginBottom: 10, marginLeft: 10 }}>{vehicleRecomended}</Text>
-                        </View>
-                    }
-                    <Text style={{ marginTop: 20 }}>{guia ? 'Recomendado um Guia' : 'Não precisa de Guia'}</Text>
+                    <Text style={{ marginTop: 10, fontFamily: 'Poppins_500Medium' }}>
+                        Em caso de acidentes ligue para o hospital São Vicente de Paulo (35) 3327-1077
+                    </Text>
+                    <Text style={{ marginTop: 10, fontFamily: 'Poppins_500Medium' }}>
+                        Observação: Algumas cachoeiras encontram-se em locais mais remotos, a precisão do google maps não é 100%, certifique-se que conhece o território, ou contrate os serviços de um guia local.
+                    </Text>
                 </AreaInfo>
             </ScrollView>
         </Container>
@@ -123,17 +146,31 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: 'Poppins_500Medium',
         fontSize: 20,
-        color: "#fff",
-        marginBottom: -5
-    },
-    textBig: {
-        fontFamily: 'Poppins_600SemiBold',
-        fontSize: 28,
-        color: "#fff"
+        color: "#00dabe",
+        marginBottom: 10
     },
     imageAtrativo: {
         width: '100%',
         height: '100%',
-        borderRadius: 10
+        borderRadius: 10,
+        borderColor: 'rgba(255,255,255,0.4)',
+        borderWidth: 2,
+    },
+    glass: {
+        width: 50,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        borderColor: 'rgba(255,255,255,0.4)',
+        borderRadius: 25,
+        borderWidth: 2,
+    },
+    imageArea: {
+        borderRadius: 10,
+        marginTop: 10,
+        borderColor: 'rgba(255,255,255,0.4)',
+        borderRadius: 25,
+        borderWidth: 2,
     }
 })

@@ -34,9 +34,6 @@ export default ({ state, navigation }) => {
             <TabItem onPress={() => goTo("Favorites")}>
                 <MaterialIcons name="favorite-border" size={24} color="white" style={{ opacity: state.index === 2 ? 1 : 0.5 }} />
             </TabItem>
-            <TabItem onPress={() => goTo("Profile")}>
-                <AntDesign name="user" size={24} color="white" style={{ opacity: state.index === 3 ? 1 : 0.5 }} />
-            </TabItem>
         </TabArea>
     );
 }

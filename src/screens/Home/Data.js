@@ -1,50 +1,7 @@
-export const Categorias = [
-    {
-        id: '1',
-        title: 'Atrativos',
-        icon: '',
-    },
-    {
-        id: '2',
-        title: 'História',
-        icon: '',
-    },
-    {
-        id: '3',
-        title: 'Fauna e Flora',
-        icon: '',
-    },
-    {
-        id: '4',
-        title: 'Guias',
-        icon: '',
-    },
-    {
-        id: '5',
-        title: 'Pousadas',
-        icon: '',
-    },
-    {
-        id: '6',
-        title: 'Alimentação',
-        icon: '',
-    },
-    {
-        id: '7',
-        title: 'Eventos',
-        icon: '',
-    },
-    {
-        id: '8',
-        title: 'Campings',
-        icon: '',
-    },
-    {
-        id: '9',
-        title: 'Farmácia e Hospital',
-        icon: '',
-    }
-];
+import IconWater from '../../../assets/icon_waterfall.png'
+import Daniel from '../../../assets/daniel.png'
+import Pessoa from '../../../assets/pessoa.png'
+
 
 import VeuNoivaImage from '../../../assets/atrativos/veu_de_noiva.jpg'
 import VeuNoivaImageTwo from '../../../assets/atrativos/veu_noiva_image.jpg'
@@ -89,6 +46,54 @@ import CachoeiraPulo from '../../../assets/atrativos/cachoeira_do_pulo.jpg'
 import Perdizes from '../../../assets/atrativos/chapada_perdizes.jpg'
 import Estacao from '../../../assets/atrativos/estacao.jpg'
 
+export const Categorias = [
+    {
+        id: '1',
+        title: 'Atrativos',
+        icon: IconWater,
+    },
+    {
+        id: '2',
+        title: 'História',
+        icon: IconWater,
+    },
+    {
+        id: '3',
+        title: 'Fauna',
+        icon: IconWater,
+    },
+    {
+        id: '4',
+        title: 'Guias',
+        icon: IconWater,
+    },
+    {
+        id: '5',
+        title: 'Pousadas',
+        icon: IconWater,
+    },
+    {
+        id: '6',
+        title: 'Alimentação',
+        icon: IconWater,
+    },
+    {
+        id: '7',
+        title: 'Campings',
+        icon: IconWater,
+    },
+    {
+        id: '8',
+        title: 'Agências',
+        icon: IconWater,
+    },
+    {
+        id: '9',
+        title: 'Farmácia e Hospital',
+        icon: IconWater,
+    }
+];
+
 export const Atrativos = [
     {
         id: '1',
@@ -98,7 +103,7 @@ export const Atrativos = [
         image: VeuNoivaImage,
         price: '0',
         mapa: 'https://www.google.com/maps/dir/-21.4884462,-44.6422967/Cachoeira+da+Fuma%C3%A7a,+Carrancas+-+MG,+37245-000/@-21.4803763,-44.6609609,14.5z/data=!4m9!4m8!1m0!1m5!1m1!1s0x9f94a021ad287d:0xb5527abf11a3db46!2m2!1d-44.6828673!2d-21.4725668!3e0',
-        polluted: 'false',
+        polluted: false,
         description: 'Parte do Complexo da Fumaça, a Véu de Noiva é formada pela junção de dois córregos, da Serra e do Café, afluentes do Ribeirão de Carrancas. Uma das cachoeiras mais altas do município - são 40m de queda d’água - tem poços pequenos, porém límpidos e belíssimos, com água cristalina e pura, que refresca só de olhar. No alto das quedas existem algumas piscinas naturais com um visual incrível das serras de Carrancas e um muro de pedras construído pelos antigos escravos da região. Imperdível.',
         location: 'Parque da Fumaça',
         vehicleRecomended: 'Qualquer Veículo',
@@ -1342,7 +1347,7 @@ export const Atrativos = [
     {
         id: '40',
         type: 'Estação',
-        title: 'Estação de Carrancas',
+        title: 'Estação',
         name: 'de Carrancas',
         image: Estacao,
         price: '0',
@@ -1377,7 +1382,7 @@ export const Guias = [
     {
         id: '1',
         name: 'Daniel',
-        image: 'https://scontent-gru1-1.xx.fbcdn.net/v/t1.6435-9/79156592_522524095001002_8034998776970084352_n.jpg?_nc_cat=101&ccb=1-4&_nc_sid=174925&_nc_ohc=8wH6TbqJAAcAX8y4Oyj&_nc_ht=scontent-gru1-1.xx&oh=3016f1b9af6505615a114bc537f58bf1&oe=61343126',
+        image: Daniel,
         phone: '+553598216583',
         routers: [
             {
@@ -1415,7 +1420,7 @@ export const Guias = [
     {
         id: '2',
         name: 'Fulano',
-        image: 'https://img.freepik.com/free-photo/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg?size=626&ext=jpg',
+        image: Pessoa,
         phone: '99 99999-9999',
         routers: [
             {
@@ -1481,7 +1486,7 @@ export const Fauna = [
         id: '5',
         name: 'Onça-parda',
         cientificName: 'Puma concolor',
-        image: 'https://coopermiti.com.br/wp-content/uploads/2020/06/0095476_0..jpg'
+        image: 'https://www.infraestruturameioambiente.sp.gov.br/pesm/wp-content/uploads/2015/03/cougar-275946_1280.jpg'
     },
 ];
 
@@ -1490,21 +1495,24 @@ export const Pousadas = [
         id: '1',
         name: 'Pousada Master',
         location: 'Serra',
-        image: 'https://www.turistandocomalu.com.br/wp-content/uploads/2020/08/Pousadas-no-Interior-de-SP-Hospedaria-Piccola-S%C3%A3o-Bento-do-Sapuca%C3%AD-4.jpg',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Pousada+Al%C3%A9m+das+Formas+-+23+Rod.+MG+451,+s%2Fn+Zona+Rural,+Carrancas+-+MG,+37245-000/@-21.4792397,-44.6586324,15z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93913b6d91fb:0x755e5cf33f5d353d!2m2!1d-44.6506155!2d-21.470063!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
         restaurante: true
     },
     {
         id: '2',
         name: 'Pousada Main',
         location: 'Zona Rural',
-        image: 'https://pousadavivamar.com.br/wp-content/uploads/2019/06/WEB-PousadaVivamar-166-e1567982987303.jpg',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Pousada+Al%C3%A9m+das+Formas+-+23+Rod.+MG+451,+s%2Fn+Zona+Rural,+Carrancas+-+MG,+37245-000/@-21.4792397,-44.6586324,15z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93913b6d91fb:0x755e5cf33f5d353d!2m2!1d-44.6506155!2d-21.470063!3e0',
+        image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/49/e5/3a/pousada-carcara.jpg?w=900&h=-1&s=1',
         restaurante: false
     },
     {
         id: '3',
         name: 'Pousada Full',
         location: 'Centro',
-        image: 'https://www.pousadacantobravobonete.com.br/wp-content/uploads/2018/12/externas-10-1024x684.jpg',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Restaurante+Tempero+da+Nair+-+Comida+Caseira+-+R.+Nove+de+Abril,+30,+Carrancas+-+MG,+37245-000/@-21.4880987,-44.6443556,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f9474e820afdb:0xbfbbb6e6479e6f46!2m2!1d-44.6454398!2d-21.4880574!3e0',
+        image: 'https://hweb-upload.s3.sa-east-1.amazonaws.com/5f29a143acb69427284b8700/cbf3ac66d7024240817c59cc2eeb2a3c.jpg',
         restaurante: true
     }
 ];
@@ -1515,6 +1523,7 @@ export const Alimentacao = [
         type: 'Comida Mineira',
         name: 'Restaurante Main',
         location: 'Serra',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Restaurante+Tempero+da+Nair+-+Comida+Caseira+-+R.+Nove+de+Abril,+30,+Carrancas+-+MG,+37245-000/@-21.4880987,-44.6443556,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f9474e820afdb:0xbfbbb6e6479e6f46!2m2!1d-44.6454398!2d-21.4880574!3e0',
         image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
         delivery: true,
     },
@@ -1523,6 +1532,8 @@ export const Alimentacao = [
         type: 'Padaria',
         name: 'Padaria Master',
         location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Restaurante+Tempero+da+Nair+-+Comida+Caseira+-+R.+Nove+de+Abril,+30,+Carrancas+-+MG,+37245-000/@-21.4880987,-44.6443556,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f9474e820afdb:0xbfbbb6e6479e6f46!2m2!1d-44.6454398!2d-21.4880574!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
         image: 'https://vejasp.abril.com.br/wp-content/uploads/2021/03/fabrique-higienopolis.jpg',
         delivery: false,
     },
@@ -1531,6 +1542,8 @@ export const Alimentacao = [
         type: 'Pizzaria',
         name: 'Pizzaria X',
         location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Restaurante+Tempero+da+Nair+-+Comida+Caseira+-+R.+Nove+de+Abril,+30,+Carrancas+-+MG,+37245-000/@-21.4880987,-44.6443556,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f9474e820afdb:0xbfbbb6e6479e6f46!2m2!1d-44.6454398!2d-21.4880574!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQujBWC-afSzCWiK4neWr1uk9E2erlk_SbSvw&usqp=CAU',
         delivery: false,
     },
@@ -1539,7 +1552,81 @@ export const Alimentacao = [
         type: 'Comida Japonesa',
         name: 'Sushi Z',
         location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Restaurante+Tempero+da+Nair+-+Comida+Caseira+-+R.+Nove+de+Abril,+30,+Carrancas+-+MG,+37245-000/@-21.4880987,-44.6443556,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f9474e820afdb:0xbfbbb6e6479e6f46!2m2!1d-44.6454398!2d-21.4880574!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
         image: 'https://blog.saipos.com/wp-content/uploads/2020/05/10-dicas-de-como-montar-um-restaurante-de-sushi-SAIPOS-sistema-para-restaurante-1.jpg',
         delivery: true,
     }
+];
+
+export const Campings = [
+    {
+        id: '1',
+        name: 'Camping Main',
+        location: 'Cachoeira',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Camping+Sossego+Do+Jeca+-+R.+Padre+Tol%C3%AAdo+Taques,+73+-+Centro,+Carrancas+-+MG,+37245-000/@-21.4879551,-44.6435267,17z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f940a438b8943:0xbbe6a21cdc3120d2!2m2!1d-44.6404123!2d-21.4880262!3e0',
+        image: 'https://scontent-gru1-2.xx.fbcdn.net/v/t1.6435-9/56405514_2391176967582137_6990096756419592192_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=2SUyEhRgVAQAX8KYFeX&_nc_ht=scontent-gru1-2.xx&oh=19cfcfa44411731e46b80d4a158db504&oe=61421572',
+    },
+    {
+        id: '2',
+        name: 'Camping Master',
+        location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Hospital+S%C3%A3o+Vicente+de+Paulo+-+R.+Oito+de+Dezembro,+216+-+Centro,+Carrancas+-+MG,+37245-000/@-21.4892148,-44.644273,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93e80298387f:0x8aaf557855291e97!2m2!1d-44.6452746!2d-21.4896852!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
+    },
+    {
+        id: '3',
+        name: 'Camping Main',
+        location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Hospital+S%C3%A3o+Vicente+de+Paulo+-+R.+Oito+de+Dezembro,+216+-+Centro,+Carrancas+-+MG,+37245-000/@-21.4892148,-44.644273,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93e80298387f:0x8aaf557855291e97!2m2!1d-44.6452746!2d-21.4896852!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
+    },
+];
+
+export const Agencias = [
+    {
+        id: '1',
+        name: 'Agência Main',
+        location: 'Cachoeira',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Camping+Sossego+Do+Jeca+-+R.+Padre+Tol%C3%AAdo+Taques,+73+-+Centro,+Carrancas+-+MG,+37245-000/@-21.4879551,-44.6435267,17z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f940a438b8943:0xbbe6a21cdc3120d2!2m2!1d-44.6404123!2d-21.4880262!3e0',
+        image: 'https://scontent-gru1-2.xx.fbcdn.net/v/t1.6435-9/56405514_2391176967582137_6990096756419592192_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=2SUyEhRgVAQAX8KYFeX&_nc_ht=scontent-gru1-2.xx&oh=19cfcfa44411731e46b80d4a158db504&oe=61421572',
+    },
+    {
+        id: '2',
+        name: 'Agência Z',
+        location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Hospital+S%C3%A3o+Vicente+de+Paulo+-+R.+Oito+de+Dezembro,+216+-+Centro,+Carrancas+-+MG,+37245-000/@-21.4892148,-44.644273,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93e80298387f:0x8aaf557855291e97!2m2!1d-44.6452746!2d-21.4896852!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
+    },
+    {
+        id: '3',
+        name: 'Agência W',
+        location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Hospital+S%C3%A3o+Vicente+de+Paulo+-+R.+Oito+de+Dezembro,+216+-+Centro,+Carrancas+-+MG,+37245-000/@-21.4892148,-44.644273,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93e80298387f:0x8aaf557855291e97!2m2!1d-44.6452746!2d-21.4896852!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
+    },
+];
+
+export const HospitalAndPharmacy = [
+    {
+        id: '1',
+        name: 'Hospital São Vicente',
+        location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Hospital+S%C3%A3o+Vicente+de+Paulo+-+R.+Oito+de+Dezembro,+216+-+Centro,+Carrancas+-+MG,+37245-000/@-21.4892148,-44.644273,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93e80298387f:0x8aaf557855291e97!2m2!1d-44.6452746!2d-21.4896852!3e0',
+        image: 'https://4.bp.blogspot.com/-ri8pGlhVxcI/WIecOOpUtcI/AAAAAAAAzRk/gsUgl4dsX_sUG9JBIP-6fSv3ZnmXd0rwwCLcB/s1600/DIVULGACAO1.jpg',
+    },
+    {
+        id: '2',
+        name: 'Farmácia X',
+        location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Drogaria+Carrancas+-+R.+Oito+de+Dezembro,+78,+Carrancas+-+MG,+37245-000/@-21.4885754,-44.6437543,19z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93e80298387f:0x5a4591940a19f5b9!2m2!1d-44.6442424!2d-21.4888768!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
+    },
+    {
+        id: '3',
+        name: 'Farmácia Z',
+        location: 'Centro',
+        mapa: 'https://www.google.com/maps/dir/Igreja+Matriz+de+Carrancas,+Carrancas+-+MG/Pousada+Al%C3%A9m+das+Formas+-+23+Rod.+MG+451,+s%2Fn+Zona+Rural,+Carrancas+-+MG,+37245-000/@-21.4792397,-44.6586324,15z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x9f940afe9c35e9:0xb0de18ef72096e39!2m2!1d-44.6421737!2d-21.488223!1m5!1m1!1s0x9f93913b6d91fb:0x755e5cf33f5d353d!2m2!1d-44.6506155!2d-21.470063!3e0',
+        image: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
+    },
 ];

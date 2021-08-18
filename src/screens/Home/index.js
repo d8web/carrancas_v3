@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, StyleSheet, ScrollView, View, SafeAreaView, FlatList } from 'react-native';
+import { Text, StyleSheet, ScrollView, View, SafeAreaView, FlatList, Image } from 'react-native';
 import {
     Container,
     OverlayArea,
@@ -10,17 +10,13 @@ import {
     GuiaInfo,
     ImageGuia,
     ButtonGuia,
-    FaunaItem,
-    AnimalImage,
     PousadaItem,
     PousadaImage,
-    FlatAreaImage,
-    FlatImage
 } from './styles';
 
 import { StatusBar } from "expo-status-bar";
-import { MaterialIcons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { BlurView } from 'expo-blur';
+import * as WebBrowser from 'expo-web-browser';
 
 import {
     Categorias as CategoriasArray,
@@ -28,8 +24,16 @@ import {
     Guias,
     Fauna,
     Pousadas,
-    Alimentacao
+    Alimentacao,
+    Campings,
+    Agencias,
+    HospitalAndPharmacy,
 } from './Data';
+
+// Components
+import History from "../../components/History";
+import Atrativo from "../../components/Atrativo";
+import ItemFauna from '../../components/Fauna';
 
 import backgroundImage from '../../../assets/atrativos/coracao.jpg'
 
@@ -37,22 +41,10 @@ import backgroundImage from '../../../assets/atrativos/coracao.jpg'
 import { useNavigation } from '@react-navigation/native'
 
 const CategoryItem = ({ item, onPress, backgroundColor, textColor }) => (
-    <FlatView onPress={onPress} style={[backgroundColor, {flexDirection: 'row'}]}>
-        <MaterialIcons name="park" size={24} color="#18d9c7" />
+    <FlatView onPress={onPress} style={[backgroundColor, {flexDirection: 'row', alignItems: 'center'}]}>
+        <Image source={item.icon} style={{ width: 30, height: 30, marginRight: 10 }} />
         <Text style={[styles.textCategory, textColor]}>{item.title}</Text>
     </FlatView>
-);
-
-const Item = ({ title, image, onPress }) => (
-    <FlatAreaImage onPress={onPress}>
-        <FlatImage source={image} borderRadius={10}>
-            <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.7)']}
-            style={styles.background}>
-                <Text style={styles.cardText}>{title}</Text>
-            </LinearGradient>
-        </FlatImage>
-    </FlatAreaImage>
 );
 
 export default () => {
@@ -79,7 +71,7 @@ export default () => {
     };
 
     const renderItem = ({ item }) => (
-        <Item
+        <Atrativo
             title={item.title}
             image={item.image}
             onPress={() => {
@@ -94,11 +86,23 @@ export default () => {
                     mapa: item.mapa,
                     description: item.description,
                     vehicleRecomended: item.vehicleRecomended,
-                    guia: item.guia
+                    guia: item.guia,
+                    polluted: item.polluted
                 });
             }}
         />
     );
+
+    const renderFauna = ({ item }) => (
+        <ItemFauna
+            title={item.name}
+            image={item.image}
+        />
+    )
+
+    const handleGo = (mapa) => {
+        WebBrowser.openBrowserAsync(mapa);
+    }
 
     useEffect(()=>{
         setCategories(CategoriasArray);
@@ -138,30 +142,22 @@ export default () => {
                     }
 
                     {categorySelected === '2' &&
-                        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                            <Text style={styles.historyText}>
-                                Andar pelas ruas de Carrancas ou de bike pelas redondezas, que incluem fazendas históricas e marcos da Estrada Real é passeio obrigatório para quem vem aqui. A cidade foi fundada em meio ao ciclo do ouro e as viagens desde Parati trouxeram bandeirantes e as suas famílias, que fixaram moradia e criaram um povoado. Eram paulistas da capital e de Taubaté que por volta de 1720 encontraram-se às margens do Rio Grande em Minas Gerais.
-                            </Text>
-                            <Text style={styles.historyText}>
-                                Apesar de grandes rivais na disputa pelas terras e pelo ouro, juntos se instalaram nas terras onde hoje está situado o município de Carrancas. Empolgados com o potencial fértil de suas terras e com a possibilidade de encontrar ouro em grande quantidade, decidiram conquistar o local iniciando um povoado com suas famílias, escravos e amigos. Em 1721 foi edificada uma capela em homenagem a Nossa Senhora da Conceição ficando então conhecido o lugar como Nossa Senhora do Rio Grande. 
-                            </Text>
-                        </ScrollView>
+                        <History/>
                     }
 
                     {categorySelected === '3' &&
-                        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                            {Fauna.map((item,key)=>(
-                                <FaunaItem key={key}>
-                                    <AnimalImage source={{ uri: item.image }} />
-                                    <Text>{item.name}</Text>
-                                    <Text>{item.cientificName}</Text>
-                                </FaunaItem>
-                            ))}
+                        <ScrollView style={{ marginTop: 40, flex: 1 }}>
+                            <FlatList
+                                data={Fauna}
+                                renderItem={renderFauna}
+                                keyExtractor={item => item.id}
+                                horizontal={true}
+                            />
                         </ScrollView>
                     }
 
                     {categorySelected === '4' &&
-                        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                        <ScrollView style={{ marginTop: 40, height: 440 }} showsVerticalScrollIndicator={false}>   
                             {Guias.map((item, key) => (
                                 <GuiaInfo key={key}
                                     onPress={() => {
@@ -174,57 +170,126 @@ export default () => {
                                         });
                                     }}
                                 >
-                                    <ImageGuia source={{ uri: item.image }} />
-                                    <Text style={styles.textButton}>{item.name}</Text>
-                                    <ButtonGuia>
-                                        <Text style={styles.textButton}>Ver Roteiros</Text>
-                                    </ButtonGuia>
+                                    <BlurView style={styles.glass}>
+                                        <ImageGuia source={item.image} />
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                            <Text style={styles.textButton}>{item.name}</Text>
+                                            <Text style={styles.textButton}>6 Roteiros</Text>
+                                            <ButtonGuia
+                                                onPress={() => {
+                                                    navigation.navigate('Guias', {
+                                                        id: item.id,
+                                                        routers: item.routers,
+                                                        name: item.name,
+                                                        phone: item.phone,
+                                                        image: item.image,
+                                                    });
+                                                }}
+                                            >
+                                                <Text style={styles.textButton}>Ver Roteiros</Text>
+                                            </ButtonGuia>
+                                        </View>
+                                    </BlurView>
                                 </GuiaInfo>
                             ))}
                         </ScrollView>
                     }
 
                     {categorySelected === '5' &&
-                        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                        <ScrollView style={{ marginTop: 40, height: 440 }} showsVerticalScrollIndicator={false}>
                             {Pousadas.map((item,key)=>(
-                                <PousadaItem key={key}>
-                                    <PousadaImage source={{ uri: item.image }} />
-                                    <View style={{ flex: 1 }}>
-                                        <Text>{item.name}</Text>
-                                        <Text>{item.location}</Text>
-                                        <Text>{item.restaurante ? 'Tem Restaurante' : 'Não Tem Restaurante'}</Text>
-                                    </View>
+                                <PousadaItem
+                                    key={key}
+                                    onPress={()=>handleGo(item.mapa)}
+                                >
+                                    <BlurView style={styles.glass}>
+                                        <PousadaImage source={{ uri: item.image }} />
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.textWhiteGlass}>{item.name}</Text>
+                                            <Text style={styles.textWhiteGlass}>{item.location}</Text>
+                                            <Text style={styles.textWhiteGlass}>{item.restaurante ? 'Tem Restaurante' : 'Não Tem Restaurante'}</Text>
+                                        </View>
+                                    </BlurView>
                                 </PousadaItem>
                             ))}
                         </ScrollView>
                     }
 
                     {categorySelected === '6' &&
-                        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                        <ScrollView style={{ marginTop: 40, height: 440 }} showsVerticalScrollIndicator={false}>
                             {Alimentacao.map((item,key)=>(
                                 <PousadaItem
                                     key={key}
-                                    onPress={() => {
-                                        navigation.navigate('Alimentacao', {
-                                            id: item.id,
-                                            name: item.name,
-                                            type: item.type
-                                        });
-                                    }}
+                                    onPress={()=>handleGo(item.mapa)}
                                 >
-                                    <PousadaImage source={{ uri: item.image }} />
-                                    <View style={{ flex: 1 }}>
-                                        <Text>{item.name}</Text>
-                                        <Text>{item.location}</Text>
-                                        <Text>{item.delivery ? 'Tem Delivery' : 'Não tem Delivery'}</Text>
-                                    </View>
+                                    <BlurView style={styles.glass}>
+                                        <PousadaImage source={{ uri: item.image }} />
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.textWhiteGlass}>{item.name}</Text>
+                                            <Text style={styles.textWhiteGlass}>{item.location}</Text>
+                                            <Text style={styles.textWhiteGlass}>{item.delivery ? 'Tem Delivery' : 'Não tem Delivery'}</Text>
+                                        </View>
+                                    </BlurView>
+                                </PousadaItem>
+                            ))}
+                        </ScrollView>
+                    }
+
+                    {categorySelected === '7' &&
+                        <ScrollView style={{ marginTop: 40, height: 440 }} showsVerticalScrollIndicator={false}>
+                            {Campings.map((item,key)=>(
+                                <PousadaItem
+                                    key={key}
+                                    onPress={()=>handleGo(item.mapa)}
+                                >
+                                    <BlurView style={styles.glass}>
+                                        <PousadaImage source={{ uri: item.image }} />
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.textWhiteGlass}>{item.name}</Text>
+                                            <Text style={styles.textWhiteGlass}>{item.location}</Text>
+                                        </View>
+                                    </BlurView>
                                 </PousadaItem>
                             ))}
                         </ScrollView>
                     }
 
                     {categorySelected === '8' &&
-                        <Text style={{ color: '#fff' }}>Mais informações</Text>
+                        <ScrollView style={{ marginTop: 40, height: 440 }} showsVerticalScrollIndicator={false}>
+                            {Agencias.map((item,key)=>(
+                                <PousadaItem
+                                    key={key}
+                                    onPress={()=>handleGo(item.mapa)}
+                                >
+                                    <BlurView style={styles.glass}>
+                                        <PousadaImage source={{ uri: item.image }} />
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.textWhiteGlass}>{item.name}</Text>
+                                            <Text style={styles.textWhiteGlass}>{item.location}</Text>
+                                        </View>
+                                    </BlurView>
+                                </PousadaItem>
+                            ))}
+                        </ScrollView>
+                    }
+
+                    {categorySelected === '9' &&
+                        <ScrollView style={{ marginTop: 40, height: 440 }} showsVerticalScrollIndicator={false}>
+                            {HospitalAndPharmacy.map((item,key)=>(
+                                <PousadaItem
+                                    key={key}
+                                    onPress={()=>handleGo(item.mapa)}
+                                >
+                                    <BlurView style={styles.glass}>
+                                        <PousadaImage source={{ uri: item.image }} />
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.textWhiteGlass}>{item.name}</Text>
+                                            <Text style={styles.textWhiteGlass}>{item.location}</Text>
+                                        </View>
+                                    </BlurView>
+                                </PousadaItem>
+                            ))}
+                        </ScrollView>
                     }
                     
                 </ScrollView>
@@ -252,16 +317,9 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     textButton: {
-        color: '#333',
+        color: '#fff',
         fontSize: 14,
         fontFamily: 'Poppins_500Medium'
-    },
-    historyText: {
-        fontSize: 15,
-        fontFamily: 'Poppins_400Regular',
-        color: '#fff',
-        marginBottom: 30,
-        lineHeight: 26
     },
     button: {
         width: '100%',
@@ -292,8 +350,18 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Poppins_500Medium'
     },
-    scrollView: {
-        marginTop: 40,
-        height: 440
+    glass: {
+        width: '100%',
+        padding: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        textAlign: 'center',
+        borderColor: 'rgba(255,255,255,0.4)',
+        borderRadius: 20,
+        borderWidth: 2,
     },
+    textWhiteGlass: {
+        fontSize: 15,
+        color: '#fff',
+    }
 });

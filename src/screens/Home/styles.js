@@ -49,8 +49,7 @@ export const ButtonGo = styled.TouchableOpacity`
 
 export const GuiaInfo = styled.TouchableOpacity`
     width: 100%;
-    padding: 20px;
-    background-color: #eee;
+    background-color: transparent;
     margin-bottom: 14px;
     justify-content: center;
     align-items: center;
@@ -58,33 +57,17 @@ export const GuiaInfo = styled.TouchableOpacity`
 `
 
 export const ImageGuia = styled.Image`
-    width: 200px;
-    height: 200px;
+    width: 140px;
+    height: 140px;
     border-radius: 100px;
-    margin-bottom: 10px;
-`
-
-export const AnimalImage = styled.Image`
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
-    margin-bottom: 10px;
-`
-
-export const FaunaItem = styled.View`
-    width: 100%;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255,255,255,0.9);
-    margin-bottom: 20px;
-    border-radius: 20px;
+    margin-right: 16px;
+    border-color: rgba(255,255,255,0.15);
+    border-width: 2px;
 `
 
 export const ButtonGuia = styled.TouchableOpacity`
-    width: 90%;
-    height: 36px;
-    background-color: white;
+    background-color: rgba(255,255,255,0.2);
+    padding: 4px 28px;
     margin-top: 5px;
     opacity: 0.85;
     justify-content: center;
@@ -94,9 +77,7 @@ export const ButtonGuia = styled.TouchableOpacity`
 
 export const PousadaItem = styled.TouchableOpacity`
     width: 100%;
-    padding: 24px;
-    margin-bottom: 10px;
-    background-color: #fff;
+    margin-bottom: 20px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -107,7 +88,9 @@ export const PousadaImage = styled.Image`
     width: 140px;
     height: 140px;
     border-radius: 100px;
-    margin-right: 24px;
+    margin-right: 16px;
+    border-color: rgba(255,255,255,0.3);
+    border-width: 3px;
 `
 
 

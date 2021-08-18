@@ -9,6 +9,7 @@ export const ImageMetade = styled.ImageBackground`
     height: 70%;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
 `
 
 export const Overlay = styled.View`
@@ -16,13 +17,15 @@ export const Overlay = styled.View`
     height: 100%;
     padding: 60px 20px 0px 20px;
     justify-content: space-between;
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0,0,0,0.5);
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
 `
 
 export const ButtonArea = styled.TouchableOpacity`
     width: 50px;
     height: 50px;
-    background-color: rgba(255,255,255,0.6);
+    background-color: transparent;
     justify-content: center;
     align-items: center;
     border-radius: 25px;
@@ -48,11 +51,9 @@ export const InfoAreaBottomText = styled.View`
 `
 
 export const PhotosArea = styled.View`
-    margin-top: 10px;
     width: 100%;
     height: 100px;
-    background-color: rgba(255,255,255,0.6);
-    border-radius: 10px;
+    background-color: transparent;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -72,13 +73,14 @@ export const HeaderArea = styled.View`
 export const IconArea = styled.TouchableOpacity`
     width: 50px;
     height: 50px;
-    background-color: rgba(255,255,255,0.6);
-    border-radius: 25px;
+    background-color: transparent;
     justify-content: center;
     align-items: center;
+    border-radius: 25px;
 `
 
 export const AreaInfo = styled.View`
     flex: 1;
     padding: 20px;
+    background-color: #fff;
 `

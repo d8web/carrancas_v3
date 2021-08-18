@@ -32,7 +32,7 @@ export default ({ route, navigation }) => {
                 </HeaderArea>
                 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={{ uri: image }} style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 10 }} />
+                    <Image source={image} style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 10 }} />
                     <Text style={{ color: '#fff', marginBottom: 10 }}>{name}</Text>
 
                     {myRouters.map((item,key) => (

@@ -49,17 +49,17 @@ export const AreaItemSearch = styled.View`
 `
 
 export const ItemArea = styled.TouchableOpacity`
-    margin-bottom: 10px;
-    background-color: #fff;
-    height: 160px;
+    margin-bottom: 20px;
+    background-color: transparent;
     flex-direction: row;
     align-items: center;
     border-radius: 20px;
-    padding: 20px;
 `
 
 export const ImageSearch = styled.Image`
     width: 40%;
     height: 120px;
     border-radius: 10px;
+    border-color: rgba(255,255,255,0.5);
+    border-width: 2px;
 `

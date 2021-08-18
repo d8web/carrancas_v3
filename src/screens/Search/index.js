@@ -9,8 +9,9 @@ import {
     ItemArea,
     ImageSearch
 } from './styles'
-import { Text, ScrollView } from 'react-native'
+import { Text, ScrollView, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'; 
+import { BlurView } from 'expo-blur';
 
 // Hooks import
 import { useNavigation } from '@react-navigation/native'
@@ -72,10 +73,12 @@ export default () => {
                                     });
                                 }}
                             >
-                                <ImageSearch source={ item.image }/>
-                                <Text style={{ marginLeft: 10, color: '#333', fontFamily: 'Poppins_500Medium' }}>
-                                    {item.title}
-                                </Text>
+                                <BlurView style={styles.glass}>
+                                    <ImageSearch source={ item.image }/>
+                                    <Text style={styles.textMy}>
+                                        {item.title}
+                                    </Text>
+                                </BlurView>
                             </ItemArea>
                         ))}
                     </ScrollView>
@@ -84,3 +87,22 @@ export default () => {
         </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    glass: {
+        width: '100%',
+        padding: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        textAlign: 'center',
+        borderColor: 'rgba(255,255,255,0.4)',
+        borderRadius: 20,
+        borderWidth: 2,
+    },
+    textMy: {
+        marginLeft: 20,
+        color: '#fff',
+        fontFamily: 'Poppins_500Medium',
+        fontSize: 16
+    }
+})
