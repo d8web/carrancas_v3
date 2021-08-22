@@ -1,4 +1,13 @@
 import IconWater from '../../../assets/icon_waterfall.png'
+import HistoryIcon from '../../../assets/history.png'
+import FaunaIcon from '../../../assets/fauna.png'
+import GuiaIcon from '../../../assets/guia.png'
+import PousadaIcon from '../../../assets/pousada.png'
+import RestauranteIcon from '../../../assets/restaurante.png'
+import CampingIcon from '../../../assets/camping.png'
+import AgenciaIcon from '../../../assets/agencia.png'
+import HospitalIcon from '../../../assets/hospital.png'
+
 import Daniel from '../../../assets/daniel.png'
 import Pessoa from '../../../assets/pessoa.png'
 
@@ -55,42 +64,42 @@ export const Categorias = [
     {
         id: '2',
         title: 'História',
-        icon: IconWater,
+        icon: HistoryIcon,
     },
     {
         id: '3',
         title: 'Fauna',
-        icon: IconWater,
+        icon: FaunaIcon,
     },
     {
         id: '4',
         title: 'Guias',
-        icon: IconWater,
+        icon: GuiaIcon,
     },
     {
         id: '5',
         title: 'Pousadas',
-        icon: IconWater,
+        icon: PousadaIcon,
     },
     {
         id: '6',
         title: 'Alimentação',
-        icon: IconWater,
+        icon: RestauranteIcon,
     },
     {
         id: '7',
         title: 'Campings',
-        icon: IconWater,
+        icon: CampingIcon,
     },
     {
         id: '8',
         title: 'Agências',
-        icon: IconWater,
+        icon: AgenciaIcon,
     },
     {
         id: '9',
         title: 'Farmácia e Hospital',
-        icon: IconWater,
+        icon: HospitalIcon,
     }
 ];
 

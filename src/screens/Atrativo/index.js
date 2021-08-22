@@ -118,24 +118,29 @@ export default ({ route, navigation }) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <AreaInfo>
                     <Text style={styles.text}>{type} {name}</Text>
-                    <Text style={{ fontFamily: 'Poppins_400Regular', fontSize: 16 }}>{description}</Text>
-                    <Text style={{ marginTop: 20, fontFamily: 'Poppins_500Medium' }}>
+                    <Text style={{ fontFamily: 'Poppins_400Regular', fontSize: 15, marginBottom: 20 }}>{description}</Text>
+                    <Text style={styles.textAtrativo}>
                         Véiculo recomendado: {vehicleRecomended}
                     </Text>
-                    <Text style={{ marginTop: 20, fontFamily: 'Poppins_500Medium' }}>
+                    <Text style={styles.textAtrativo}>
                         Necessário um Guia: {guia ? 'Sim' : 'Não'}
                     </Text>
                     {polluted &&
-                        <Text style={{ marginTop: 10, fontFamily: 'Poppins_500Medium', color: '#00dabe' }}>
-                            Cachoeira Imprópria para banho!
+                        <Text style={{ marginTop: 10, fontFamily: 'Poppins_500Medium', color: 'red' }}>
+                            Cachoeira Imprópria para consumo!
                         </Text>
                     }
-                    <Text style={{ marginTop: 10, fontFamily: 'Poppins_500Medium' }}>
+                    <Text style={styles.textAtrativo}>
                         Em caso de acidentes ligue para o hospital São Vicente de Paulo (35) 3327-1077
                     </Text>
-                    <Text style={{ marginTop: 10, fontFamily: 'Poppins_500Medium' }}>
+                    <Text style={styles.textAtrativo}>
                         Observação: Algumas cachoeiras encontram-se em locais mais remotos, a precisão do google maps não é 100%, certifique-se que conhece o território, ou contrate os serviços de um guia local.
                     </Text>
+                    {price != '0' &&
+                        <Text style={styles.textAtrativo}>
+                            Grande parte dos preços nos atrativos são na verdade o preço de um complexo inteiro de cachoeiras e poços, então quando ver o preço de um atrativo saiba que você não vai pagar para ver apenas uma cachoeira, mas sim um conjunto de atrativos.
+                        </Text>
+                    }
                 </AreaInfo>
             </ScrollView>
         </Container>
@@ -146,8 +151,14 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: 'Poppins_500Medium',
         fontSize: 20,
-        color: "#00dabe",
+        color: "#333",
         marginBottom: 10
+    },
+    textAtrativo: {
+        marginTop: 6,
+        fontFamily: 'Poppins_500Medium',
+        color: '#333',
+        fontSize: 15
     },
     imageAtrativo: {
         width: '100%',

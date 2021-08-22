@@ -46,7 +46,7 @@ export default ({ route, navigation }) => {
                     ))}
 
                     <TouchableOpacity onPress={handleWhatsGuia} style={styles.guiaItem}>
-                        <Text style={{ marginRight: 10, color: 'white' }}>Chamar</Text>
+                        <Text style={{ marginRight: 10, color: 'white' }}>Ver Disponibilidade</Text>
                         <FontAwesome name="whatsapp" size={24} color="#fff" />
                     </TouchableOpacity>
 
